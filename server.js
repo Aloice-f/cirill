@@ -97,6 +97,18 @@ app.use((req, res) => {
     path: req.path
   });
 });
+app.get("/debug-files", (_req, res) => {
+  const fs = require("fs");
+
+  res.json({
+    appDirectory: __dirname,
+    files: fs.readdirSync(__dirname),
+    publicExists: fs.existsSync(path.join(__dirname, "public")),
+    indexExists: fs.existsSync(
+      path.join(__dirname, "public", "index.html")
+    )
+  });
+});
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Captain Bot listening on port ${PORT}`);
