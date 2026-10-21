@@ -17,6 +17,9 @@ const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 // This starter deliberately does not collect WhatsApp login/pairing codes,
 // QR sessions, or session credentials. Connect a supported bot integration
 // privately rather than exposing those secrets through a public website.
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 const requests = [];
 const requestLimit = new Map();
 
