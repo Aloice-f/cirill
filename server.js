@@ -72,3 +72,14 @@ app.get("/api/admin/requests", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Captain Bot website listening on ${PORT}`));
+app.get("/debug-files", (_req, res) => {
+  const fs = require("fs");
+
+  res.json({
+    directory: __dirname,
+    publicExists: fs.existsSync(path.join(__dirname, "public")),
+    indexExists: fs.existsSync(
+      path.join(__dirname, "public", "index.html")
+    )
+  });
+});
